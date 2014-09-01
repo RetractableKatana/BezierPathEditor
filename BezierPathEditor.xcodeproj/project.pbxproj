@@ -11,14 +11,16 @@
 		09375B7419B2C531009B4FE1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 09375B7219B2C531009B4FE1 /* InfoPlist.strings */; };
 		09375B7619B2C531009B4FE1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 09375B7519B2C531009B4FE1 /* main.m */; };
 		09375B7A19B2C531009B4FE1 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 09375B7819B2C531009B4FE1 /* Credits.rtf */; };
-		09375B7D19B2C531009B4FE1 /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = 09375B7C19B2C531009B4FE1 /* Document.m */; };
-		09375B8019B2C531009B4FE1 /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09375B7E19B2C531009B4FE1 /* Document.xib */; };
+		09375B7D19B2C531009B4FE1 /* BPEDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 09375B7C19B2C531009B4FE1 /* BPEDocument.m */; };
+		09375B8019B2C531009B4FE1 /* BPEDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09375B7E19B2C531009B4FE1 /* BPEDocument.xib */; };
 		09375B8319B2C531009B4FE1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09375B8119B2C531009B4FE1 /* MainMenu.xib */; };
 		09375B8519B2C531009B4FE1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09375B8419B2C531009B4FE1 /* Images.xcassets */; };
 		09375B8C19B2C531009B4FE1 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09375B8B19B2C531009B4FE1 /* XCTest.framework */; };
 		09375B8D19B2C531009B4FE1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09375B6919B2C531009B4FE1 /* Cocoa.framework */; };
 		09375B9519B2C531009B4FE1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 09375B9319B2C531009B4FE1 /* InfoPlist.strings */; };
 		09375B9719B2C531009B4FE1 /* BezierPathEditorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 09375B9619B2C531009B4FE1 /* BezierPathEditorTests.m */; };
+		09FC6ED919B4454E00FB7F47 /* BPECanvasView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09FC6ED819B4454E00FB7F47 /* BPECanvasView.m */; };
+		09FC6EDC19B4674C00FB7F47 /* BPEColorWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09FC6EDB19B4674C00FB7F47 /* BPEColorWindowController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,9 +44,9 @@
 		09375B7519B2C531009B4FE1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		09375B7719B2C531009B4FE1 /* BezierPathEditor-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BezierPathEditor-Prefix.pch"; sourceTree = "<group>"; };
 		09375B7919B2C531009B4FE1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		09375B7B19B2C531009B4FE1 /* Document.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Document.h; sourceTree = "<group>"; };
-		09375B7C19B2C531009B4FE1 /* Document.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Document.m; sourceTree = "<group>"; };
-		09375B7F19B2C531009B4FE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Document.xib; sourceTree = "<group>"; };
+		09375B7B19B2C531009B4FE1 /* BPEDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPEDocument.h; sourceTree = "<group>"; };
+		09375B7C19B2C531009B4FE1 /* BPEDocument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPEDocument.m; sourceTree = "<group>"; };
+		09375B7F19B2C531009B4FE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/BPEDocument.xib; sourceTree = "<group>"; };
 		09375B8219B2C531009B4FE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		09375B8419B2C531009B4FE1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		09375B8A19B2C531009B4FE1 /* BezierPathEditorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BezierPathEditorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,6 +54,10 @@
 		09375B9219B2C531009B4FE1 /* BezierPathEditorTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BezierPathEditorTests-Info.plist"; sourceTree = "<group>"; };
 		09375B9419B2C531009B4FE1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		09375B9619B2C531009B4FE1 /* BezierPathEditorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BezierPathEditorTests.m; sourceTree = "<group>"; };
+		09FC6ED719B4454E00FB7F47 /* BPECanvasView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPECanvasView.h; sourceTree = "<group>"; };
+		09FC6ED819B4454E00FB7F47 /* BPECanvasView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPECanvasView.m; sourceTree = "<group>"; };
+		09FC6EDA19B4674C00FB7F47 /* BPEColorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPEColorWindowController.h; sourceTree = "<group>"; };
+		09FC6EDB19B4674C00FB7F47 /* BPEColorWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPEColorWindowController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,12 +123,16 @@
 		09375B6F19B2C531009B4FE1 /* BezierPathEditor */ = {
 			isa = PBXGroup;
 			children = (
-				09375B7B19B2C531009B4FE1 /* Document.h */,
-				09375B7C19B2C531009B4FE1 /* Document.m */,
-				09375B7E19B2C531009B4FE1 /* Document.xib */,
+				09FC6EDA19B4674C00FB7F47 /* BPEColorWindowController.h */,
+				09FC6EDB19B4674C00FB7F47 /* BPEColorWindowController.m */,
+				09375B7B19B2C531009B4FE1 /* BPEDocument.h */,
+				09375B7C19B2C531009B4FE1 /* BPEDocument.m */,
+				09375B7E19B2C531009B4FE1 /* BPEDocument.xib */,
 				09375B8119B2C531009B4FE1 /* MainMenu.xib */,
 				09375B8419B2C531009B4FE1 /* Images.xcassets */,
 				09375B7019B2C531009B4FE1 /* Supporting Files */,
+				09FC6ED719B4454E00FB7F47 /* BPECanvasView.h */,
+				09FC6ED819B4454E00FB7F47 /* BPECanvasView.m */,
 			);
 			path = BezierPathEditor;
 			sourceTree = "<group>";
@@ -201,6 +211,7 @@
 		09375B5E19B2C531009B4FE1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = BPE;
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = IntelligentSprite;
 				TargetAttributes = {
@@ -233,7 +244,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				09375B8019B2C531009B4FE1 /* Document.xib in Resources */,
+				09375B8019B2C531009B4FE1 /* BPEDocument.xib in Resources */,
 				09375B8519B2C531009B4FE1 /* Images.xcassets in Resources */,
 				09375B7419B2C531009B4FE1 /* InfoPlist.strings in Resources */,
 				09375B7A19B2C531009B4FE1 /* Credits.rtf in Resources */,
@@ -256,8 +267,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				09375B7D19B2C531009B4FE1 /* Document.m in Sources */,
+				09375B7D19B2C531009B4FE1 /* BPEDocument.m in Sources */,
 				09375B7619B2C531009B4FE1 /* main.m in Sources */,
+				09FC6ED919B4454E00FB7F47 /* BPECanvasView.m in Sources */,
+				09FC6EDC19B4674C00FB7F47 /* BPEColorWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,12 +309,12 @@
 			name = Credits.rtf;
 			sourceTree = "<group>";
 		};
-		09375B7E19B2C531009B4FE1 /* Document.xib */ = {
+		09375B7E19B2C531009B4FE1 /* BPEDocument.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				09375B7F19B2C531009B4FE1 /* Base */,
 			);
-			name = Document.xib;
+			name = BPEDocument.xib;
 			sourceTree = "<group>";
 		};
 		09375B8119B2C531009B4FE1 /* MainMenu.xib */ = {
@@ -478,6 +491,7 @@
 				09375B9C19B2C531009B4FE1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		09375B9D19B2C531009B4FE1 /* Build configuration list for PBXNativeTarget "BezierPathEditorTests" */ = {
 			isa = XCConfigurationList;
@@ -486,6 +500,7 @@
 				09375B9F19B2C531009B4FE1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
