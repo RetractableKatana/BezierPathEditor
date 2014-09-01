@@ -32,7 +32,7 @@
                     <toolbarItem implicitItemIdentifier="5EFA1BF7-86C9-44D9-B564-67B57BEF8BFC" label="Stroke" paletteLabel="Stroke" toolTip="Sets the Stroke Color for the Bezier Path" id="tfY-gX-1Aa">
                         <size key="minSize" width="44" height="23"/>
                         <size key="maxSize" width="44" height="23"/>
-                        <colorWell key="view" id="uMh-yT-koY">
+                        <colorWell key="view" canDrawConcurrently="YES" id="uMh-yT-koY">
                             <rect key="frame" x="0.0" y="14" width="44" height="23"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -44,7 +44,7 @@
                     <toolbarItem implicitItemIdentifier="32927F78-8CC0-4EC3-9C9F-BD32C7159184" label="Fill" paletteLabel="Fill" toolTip="Sets the Fill Color for the Bezier Path" tag="1" id="GQZ-EL-HMj">
                         <size key="minSize" width="44" height="23"/>
                         <size key="maxSize" width="44" height="23"/>
-                        <colorWell key="view" tag="1" id="5HP-76-xNU">
+                        <colorWell key="view" canDrawConcurrently="YES" tag="1" id="5HP-76-xNU">
                             <rect key="frame" x="0.0" y="14" width="44" height="23"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <color key="color" white="1" alpha="0.0" colorSpace="calibratedWhite"/>

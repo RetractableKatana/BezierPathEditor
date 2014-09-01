@@ -20,6 +20,7 @@
 		09375B9519B2C531009B4FE1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 09375B9319B2C531009B4FE1 /* InfoPlist.strings */; };
 		09375B9719B2C531009B4FE1 /* BezierPathEditorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 09375B9619B2C531009B4FE1 /* BezierPathEditorTests.m */; };
 		09FC6ED919B4454E00FB7F47 /* BPECanvasView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09FC6ED819B4454E00FB7F47 /* BPECanvasView.m */; };
+		09FC6EDF19B5118C00FB7F47 /* BPEAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 09FC6EDE19B5118C00FB7F47 /* BPEAppDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,8 @@
 		09375B9619B2C531009B4FE1 /* BezierPathEditorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BezierPathEditorTests.m; sourceTree = "<group>"; };
 		09FC6ED719B4454E00FB7F47 /* BPECanvasView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPECanvasView.h; sourceTree = "<group>"; };
 		09FC6ED819B4454E00FB7F47 /* BPECanvasView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPECanvasView.m; sourceTree = "<group>"; };
+		09FC6EDD19B5118C00FB7F47 /* BPEAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPEAppDelegate.h; sourceTree = "<group>"; };
+		09FC6EDE19B5118C00FB7F47 /* BPEAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPEAppDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,14 +123,16 @@
 		09375B6F19B2C531009B4FE1 /* BezierPathEditor */ = {
 			isa = PBXGroup;
 			children = (
+				09FC6EDD19B5118C00FB7F47 /* BPEAppDelegate.h */,
+				09FC6EDE19B5118C00FB7F47 /* BPEAppDelegate.m */,
+				09FC6ED719B4454E00FB7F47 /* BPECanvasView.h */,
+				09FC6ED819B4454E00FB7F47 /* BPECanvasView.m */,
 				09375B7B19B2C531009B4FE1 /* BPEDocument.h */,
 				09375B7C19B2C531009B4FE1 /* BPEDocument.m */,
 				09375B7E19B2C531009B4FE1 /* BPEDocument.xib */,
-				09375B8119B2C531009B4FE1 /* MainMenu.xib */,
 				09375B8419B2C531009B4FE1 /* Images.xcassets */,
+				09375B8119B2C531009B4FE1 /* MainMenu.xib */,
 				09375B7019B2C531009B4FE1 /* Supporting Files */,
-				09FC6ED719B4454E00FB7F47 /* BPECanvasView.h */,
-				09FC6ED819B4454E00FB7F47 /* BPECanvasView.m */,
 			);
 			path = BezierPathEditor;
 			sourceTree = "<group>";
@@ -264,6 +269,7 @@
 			files = (
 				09375B7D19B2C531009B4FE1 /* BPEDocument.m in Sources */,
 				09375B7619B2C531009B4FE1 /* main.m in Sources */,
+				09FC6EDF19B5118C00FB7F47 /* BPEAppDelegate.m in Sources */,
 				09FC6ED919B4454E00FB7F47 /* BPECanvasView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
