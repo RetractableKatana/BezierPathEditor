@@ -7,6 +7,8 @@
         <customObject id="-2" userLabel="File's Owner" customClass="BPEDocument">
             <connections>
                 <outlet property="canvas" destination="gIp-Ho-8D9" id="jWz-K1-IKV"/>
+                <outlet property="fillWell" destination="5HP-76-xNU" id="3rj-Mg-fZ7"/>
+                <outlet property="strokeWell" destination="uMh-yT-koY" id="oMr-JG-VMP"/>
                 <outlet property="window" destination="xOd-HO-29H" id="JIz-fz-R2o"/>
             </connections>
         </customObject>

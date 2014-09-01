@@ -10,6 +10,10 @@
 
 #import "BPECanvasView.h"
 
+static NSString * const BPEDocumentCoderKeyBezierPath = @"bezierPath";
+static NSString * const BPEDocumentCoderKeyCurrentFillColor = @"currentFillColor";
+static NSString * const BPEDocumentCoderKeyCurrentStrokeColor = @"currentStrokeColor";
+
 @interface BPEDocument ()
 
 @end
@@ -47,8 +51,8 @@
 {
     [super windowControllerDidLoadNib:aController];
     
-    self.colorController = [[BPEColorWindowController alloc] initWithWindow:[NSColorPanel sharedColorPanel]];
-    self.colorController.delegate = self;
+    self.strokeWell.color = self.currentStrokeColor;
+    self.fillWell.color = self.currentFillColor;
 }
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
@@ -58,14 +62,39 @@
         return nil;
     }
     
-    NSData *archive = [NSKeyedArchiver archivedDataWithRootObject:self.bezierPath];
+    NSMutableData *outBytes = [NSMutableData new];
     
-    return archive;
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:outBytes];
+    
+    if (self.currentStrokeColor)
+    {
+        [archiver encodeObject:self.currentStrokeColor forKey:BPEDocumentCoderKeyCurrentStrokeColor];
+    }
+    
+    if (self.currentFillColor)
+    {
+        [archiver encodeObject:self.currentFillColor forKey:BPEDocumentCoderKeyCurrentFillColor];
+    }
+    
+    if (self.bezierPath)
+    {
+        [archiver encodeObject:self.bezierPath forKey:BPEDocumentCoderKeyBezierPath];
+    }
+    
+    [archiver finishEncoding];
+    
+    return outBytes;
 }
 
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError
 {
-    self.bezierPath = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    NSKeyedUnarchiver *decoder = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+    
+    self.bezierPath = [decoder decodeObjectForKey:BPEDocumentCoderKeyBezierPath];
+    self.currentStrokeColor = [decoder decodeObjectForKey:BPEDocumentCoderKeyCurrentStrokeColor];
+    self.currentFillColor = [decoder decodeObjectForKey:BPEDocumentCoderKeyCurrentFillColor];
+    
+    [decoder finishDecoding];
     
     return YES;
 }
@@ -112,23 +141,6 @@
     {
         self.currentFillColor = [[NSColorPanel sharedColorPanel] color];
         [self.canvas setNeedsDisplay:YES];
-    }
-}
-
-#pragma mark - BPEColorWindowControllerDelegate Methods
-
-- (void)didPickColor:(NSColor *)color
-{
-    switch (self.activeToolbarType)
-    {
-        case BPEDocumentToolbarTypeStrokeColor:
-            break;
-        
-        case BPEDocumentToolbarTypeFillColor:
-            break;
-            
-        default:
-            break;
     }
 }
 

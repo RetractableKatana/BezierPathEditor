@@ -8,8 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "BPEColorWindowController.h"
-
 @class BPECanvasView;
 
 typedef NS_ENUM(NSInteger, BPEDocumentToolbarType)
@@ -22,15 +20,16 @@ typedef NS_ENUM(NSInteger, BPEDocumentToolbarType)
     BPEDocumentToolbarTypeClearAll
 };
 
-@interface BPEDocument : NSDocument <NSToolbarDelegate, BPEColorWindowControllerDelegate>
+@interface BPEDocument : NSDocument <NSToolbarDelegate>
 
 @property IBOutlet BPECanvasView *canvas;
+@property IBOutlet NSColorWell *strokeWell;
+@property IBOutlet NSColorWell *fillWell;
 
 @property NSColor *currentStrokeColor;
 @property NSColor *currentFillColor;
 @property NSBezierPath *bezierPath;
 
-@property BPEColorWindowController *colorController;
 @property BPEDocumentToolbarType activeToolbarType;
 
 - (IBAction)toolbarItemPressed:(NSToolbarItem *)item;
