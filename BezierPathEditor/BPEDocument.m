@@ -53,6 +53,17 @@ static NSString * const BPEDocumentCoderKeyCurrentStrokeColor = @"currentStrokeC
     
     self.strokeWell.color = self.currentStrokeColor;
     self.fillWell.color = self.currentFillColor;
+    
+    // Find the Draw tool and select it to be the default.
+    NSToolbar *toolbar = aController.window.toolbar;
+    
+    for (NSToolbarItem *item in toolbar.items)
+    {
+        if (item.tag == BPEDocumentToolbarTypeDraw)
+        {
+            [toolbar setSelectedItemIdentifier:item.itemIdentifier];
+        }
+    }
 }
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError

@@ -11,8 +11,8 @@
 
 @interface BPECanvasView ()
 
-@property NSPoint lastPoint;
-@property NSRect selectionRect;
+@property NSPoint startPoint;
+@property NSPoint currentPoint;
 
 @end
 
@@ -24,7 +24,8 @@
 {
     if (self = [super initWithCoder:aDecoder])
     {
-        _lastPoint = NSZeroPoint;
+        _startPoint = NSZeroPoint;
+        _currentPoint = NSZeroPoint;
     }
     
     return self;
@@ -36,6 +37,8 @@
     
     if (self.document.activeToolbarType == BPEDocumentToolbarTypeSelect)
     {
+        // In select mode, also draw the shape.
+        [self drawDrawRect:dirtyRect];
         [self selectionDrawRect:dirtyRect];
     }
     else if (self.document.activeToolbarType == BPEDocumentToolbarTypeDraw)
@@ -46,6 +49,8 @@
 
 - (void)mouseDown:(NSEvent *)theEvent
 {
+    self.startPoint = theEvent.locationInWindow;
+    
     if (self.document.activeToolbarType == BPEDocumentToolbarTypeSelect)
     {
         [self selectionMoseDown:theEvent];
@@ -54,11 +59,12 @@
     {
         [self drawMouseDown:theEvent];
     }
-
 }
 
-- (void)mouseMoved:(NSEvent *)theEvent
+- (void)mouseDragged:(NSEvent *)theEvent
 {
+    self.currentPoint = theEvent.locationInWindow;
+    
     if (self.document.activeToolbarType == BPEDocumentToolbarTypeSelect)
     {
         [self selectionMouseMoved:theEvent];
@@ -69,21 +75,52 @@
     }
 }
 
+- (void)mouseUp:(NSEvent *)theEvent
+{
+    if (self.document.activeToolbarType == BPEDocumentToolbarTypeSelect)
+    {
+        [self selectionMouseUp:theEvent];
+    }
+    else if (self.document.activeToolbarType == BPEDocumentToolbarTypeDraw)
+    {
+        [self drawMouseUp:theEvent];
+    }
+    
+    // This should remain at the bottom of this method to provide the mouseUp methods one last chance to capture the
+    // start and currentPoint.
+    self.startPoint = self.currentPoint = NSZeroPoint;
+}
+
 #pragma mark - Selection Mode Methods
 
 - (void)selectionMoseDown:(NSEvent *)theEvent
 {
-    
 }
 
 - (void)selectionMouseMoved:(NSEvent *)theEvent
 {
-    
+    [self setNeedsDisplay:YES];
+}
+
+- (void)selectionMouseUp:(NSEvent *)theEvent
+{
+    [self setNeedsDisplay:YES];
 }
 
 - (void)selectionDrawRect:(NSRect)dirtyRect
 {
-    [NSBezierPath bezierPathWithRect:self.selectionRect];
+    [[NSColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:0.5] setFill];
+    [[NSColor blackColor] setStroke];
+    
+    NSRect selectionRect = NSMakeRect(self.startPoint.x,
+                                      self.startPoint.y,
+                                      self.currentPoint.x - self.startPoint.x,
+                                      self.currentPoint.y - self.startPoint.y);
+    
+    NSBezierPath *bp = [NSBezierPath bezierPathWithRect:selectionRect];
+    
+    [bp stroke];
+    [bp fill];
 }
 
 #pragma mark - Draw Mode Methods
@@ -97,21 +134,26 @@
         return;
     }
     
-    self.lastPoint = theEvent.locationInWindow;
-    
     if (bp.isEmpty)
     {
         [bp moveToPoint:theEvent.locationInWindow];
     }
     else
     {
-        [bp lineToPoint:theEvent.locationInWindow];
+        [bp curveToPoint:theEvent.locationInWindow
+           controlPoint1:theEvent.locationInWindow
+           controlPoint2:theEvent.locationInWindow];
     }
     
     [self setNeedsDisplay:YES];
 }
 
 - (void)drawMouseMoved:(NSEvent *)theEvent
+{
+    
+}
+
+- (void)drawMouseUp:(NSEvent *)theEvent
 {
     
 }
