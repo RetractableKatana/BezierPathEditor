@@ -150,7 +150,35 @@
 
 - (void)drawMouseMoved:(NSEvent *)theEvent
 {
+    NSBezierPath *bp = self.document.bezierPath;
     
+    if (bp == nil)
+    {
+        return;
+    }
+    
+    NSPointArray lastPoints = malloc(sizeof(NSPoint) * 3);
+    lastPoints[0] = NSZeroPoint;
+    lastPoints[1] = NSZeroPoint;
+    lastPoints[2] = NSZeroPoint;
+
+    NSUInteger elemIndex = [bp elementCount] - 1;
+    
+    NSBezierPathElement lastCurve = [bp elementAtIndex:elemIndex
+                                      associatedPoints:lastPoints];
+    
+    if (lastCurve == NSCurveToBezierPathElement)
+    {
+        NSPoint cp2 = self.currentPoint;
+        
+        lastPoints[1] = cp2;
+        
+        [bp setAssociatedPoints:lastPoints atIndex:elemIndex];
+        
+        [self setNeedsDisplay:YES];
+    }
+    
+    free(lastPoints);
 }
 
 - (void)drawMouseUp:(NSEvent *)theEvent
