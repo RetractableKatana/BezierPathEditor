@@ -8,7 +8,6 @@
 
 #import "BPECanvasView.h"
 
-
 @interface BPECanvasView ()
 
 @property NSPoint startPoint;
@@ -136,12 +135,13 @@
     
     if (bp.isEmpty)
     {
+        // First point.
         [bp moveToPoint:theEvent.locationInWindow];
     }
     else
     {
         [bp curveToPoint:theEvent.locationInWindow
-           controlPoint1:theEvent.locationInWindow
+           controlPoint1:bp.currentPoint
            controlPoint2:theEvent.locationInWindow];
     }
     
@@ -157,28 +157,19 @@
         return;
     }
     
-    NSPointArray lastPoints = malloc(sizeof(NSPoint) * 3);
-    lastPoints[0] = NSZeroPoint;
-    lastPoints[1] = NSZeroPoint;
-    lastPoints[2] = NSZeroPoint;
-
-    NSUInteger elemIndex = [bp elementCount] - 1;
-    
-    NSBezierPathElement lastCurve = [bp elementAtIndex:elemIndex
-                                      associatedPoints:lastPoints];
-    
-    if (lastCurve == NSCurveToBezierPathElement)
-    {
-        NSPoint cp2 = self.currentPoint;
+    [self findLastCurve:^(NSPointArray points, NSBezierPathElement element, NSInteger curveIndex) {
         
-        lastPoints[1] = cp2;
-        
-        [bp setAssociatedPoints:lastPoints atIndex:elemIndex];
-        
-        [self setNeedsDisplay:YES];
-    }
-    
-    free(lastPoints);
+        if (element == NSCurveToBezierPathElement)
+        {
+            NSPoint cp2 = self.currentPoint;
+            
+            points[1] = cp2;
+            
+            [bp setAssociatedPoints:points atIndex:curveIndex];
+            
+            [self setNeedsDisplay:YES];
+        }
+    }];
 }
 
 - (void)drawMouseUp:(NSEvent *)theEvent
@@ -193,6 +184,49 @@
     
     [self.document.bezierPath stroke];
     [self.document.bezierPath fill];
+}
+
+#pragma mark - Utility Methods
+
+- (void)enumerateCurvesUsingBlock:(void (^)(NSPointArray points, NSBezierPathElement element, NSInteger curveIndex, BOOL *stop))block
+{
+    NSBezierPath *bp = self.document.bezierPath;
+
+    NSInteger lastIndex = [bp elementCount] - 1;
+    BOOL stop = NO;
+    
+    for (NSInteger i = 0; (i < lastIndex && stop == NO); i++)
+    {
+        // Find last point
+        NSPoint lastPoints[3] = {NSZeroPoint, NSZeroPoint, NSZeroPoint};
+        
+        NSInteger elemIndex = [bp elementCount] - 1;
+        
+        NSBezierPathElement lastCurve = [bp elementAtIndex:elemIndex
+                                          associatedPoints:lastPoints];
+        
+        block(lastPoints, lastCurve, elemIndex, &stop);
+    }
+}
+
+- (void)findLastCurve:(void (^)(NSPointArray points, NSBezierPathElement element, NSInteger curveIndex))completion
+{
+    if (completion == nil)
+    {
+        return;
+    }
+    
+    NSBezierPath *bp = self.document.bezierPath;
+    
+    // Find last point
+    NSPoint lastPoints[3] = {NSZeroPoint, NSZeroPoint, NSZeroPoint};
+    
+    NSInteger elemIndex = [bp elementCount] - 1;
+    
+    NSBezierPathElement lastCurve = [bp elementAtIndex:elemIndex
+                                      associatedPoints:lastPoints];
+
+    completion(lastPoints, lastCurve, elemIndex);
 }
 
 @end
